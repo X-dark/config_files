@@ -1,15 +1,15 @@
 URxvt.foreground: white
 
-URxvt.transparent: true
-URxvt*shading: 20
+#URxvt.transparent: true
+#URxvt*shading: 80
 
 URxvt*iso14755: False
 
 #URxvt.depth: 32
-URxvt.background: rgba:0000/0000/0000/cccc
+#URxvt.background: rgba:0000/0000/0000/cccc
 URxvt.loginShell: true
-URxvt.fading: 20
-URxvt.fadeColor: [0]black
+#URxvt.fading: 10
+#URxvt.fadeColor: [0]black
 URxvt.perl-lib: /usr/lib/urxvt/perl
 URxvt.keysym.M-u: perl:mark-yank-urls:activate_mark_mode
 URxvt.underlineURLs: true
@@ -19,24 +19,45 @@ URxvt.underlineColor: green
 URxvt.saveLines: 65535
 URxvt.scrollBar: false
 
-URxvt.background:  #111111
-URxvt.foreground:  #dabda9
-URxvt.color0:      #000000
-URxvt.color1:      #9e1828
-URxvt.color2:      #aece92
-URxvt.color3:      #968a38
-URxvt.color4:      #414171
-URxvt.color5:      #963c59
-URxvt.color6:      #418179
-URxvt.color7:      #bebebe
-URxvt.color8:      #666666
-URxvt.color9:      #cf6171
-URxvt.color10:     #c5f779
-URxvt.color11:     #fff796
-URxvt.color12:     #4186be
-URxvt.color13:     #cf9ebe
-URxvt.color14:     #71bebe
-URxvt.color15:     #ffffff
+URxvt.background:  #e3dfdf
+URxvt.foreground:  #696969
+
+! ANSI
+! Normal
+! ! color0     black
+! ! color1     red
+! ! color2     green
+! ! color3     yellow
+! ! color4     blue
+! ! color5     purple
+! ! color6     cyan
+! ! color7     white
+URxvt.color0:      #373a37
+URxvt.color1:      #c16f61
+URxvt.color2:      #6B8836
+URxvt.color3:      #AE6F38
+URxvt.color4:      #6287A0
+URxvt.color5:      #6D8D83
+URxvt.color6:      #3783B1
+URxvt.color7:      #D6D6D6
+
+! Light
+! ! color8     black
+! ! color9     red
+! ! color10    green
+! ! color11    yellow
+! ! color12    blue
+! ! color13    purple
+! ! color14    cyan
+! ! color15    white
+URxvt.color8:      #373a37
+URxvt.color9:      #c16F61
+URxvt.color10:     #6B8836
+URxvt.color11:     #AE6F38
+URxvt.color12:     #6287A0
+URxvt.color13:     #6D8D83
+URxvt.color14:     #3783B1
+URxvt.color15:     #D6D6D6
 
 #URxvt.font:     -*-fixed-medium-r-*-*-13-*-*-*-*-*-*-*
 
