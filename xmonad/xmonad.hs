@@ -1,6 +1,7 @@
 import XMonad
 
 import Data.List
+import Data.Monoid
 
 import System.Exit
 import System.IO
@@ -35,6 +36,10 @@ import qualified XMonad.StackSet as W
 -- certain contrib modules.
 --
 myTerminal      = "urxvtc -e bash"
+
+-- Whether focus follows the mouse pointer.
+myFocusFollowsMouse :: Bool
+myFocusFollowsMouse = True
 
 -- Width of the window border in pixels.
 --
@@ -135,14 +140,17 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Deincrement the number of windows in the master area
     , ((modm,               xK_semicolon), sendMessage (IncMasterN (-1)))
 
-    -- toggle the status bar gap (used with avoidStruts from Hooks.ManageDocks)
+    -- Toggle the status bar gap
+    -- Use this binding with avoidStruts from Hooks.ManageDocks.
+    -- See also the statusBar function from Hooks.DynamicLog.
+    --
     , ((modm,               xK_b     ), sendMessage ToggleStruts)
 
     -- Quit xmonad
     , ((modm .|. shiftMask, xK_q     ), spawn "/home/cgirard/shutdown.sh")
 
     -- Restart xmonad
-    , ((modm,               xK_q     ), restart "xmonad" True)
+    , ((modm              , xK_q     ), spawn "xmonad --recompile; xmonad --restart")
 
     -- GridSelected
     , ((modm,               xK_g     ), goToSelected defaultGSConfig)
@@ -189,16 +197,18 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 ------------------------------------------------------------------------
 -- Mouse bindings: default actions bound to mouse events
 --
-myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList
+myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
 
     -- mod-button1, Set the window to floating mode and move by dragging
-    [ ((modMask, button1), \w -> focus w >> mouseMoveWindow w)
+    [ ((modMask, button1), (\w -> focus w >> mouseMoveWindow w
+                                       >> windows W.shiftMaster))
 
     -- mod-button2, Raise the window to the top of the stack
-    , ((modMask, button2), \w -> focus w >> windows W.swapMaster)
+    , ((modMask, button2), (\w -> focus w >> windows W.shiftMaster))
 
     -- mod-button3, Set the window to floating mode and resize by dragging
-    , ((modMask, button3), \w -> focus w >> mouseResizeWindow w)
+    , ((modMask, button3), (\w -> focus w >> mouseResizeWindow w
+                                       >> windows W.shiftMaster))
 
     -- you may also bind events to the mouse scroll wheel (button4 and button5)
     ]
@@ -270,16 +280,22 @@ myManageHook = composeAll
     <+> composeOne
     [ isFullscreen -?> doFullFloat ]
 
--- Whether focus follows the mouse pointer.
-myFocusFollowsMouse :: Bool
-myFocusFollowsMouse = True
+------------------------------------------------------------------------
+-- Event handling
 
+-- * EwmhDesktops users should change this to ewmhDesktopsEventHook
+--
+-- Defines a custom handler function for X Events. The function should
+-- return (All True) if the default handler is to be run afterwards. To
+-- combine event hooks use mappend or mconcat from Data.Monoid.
+--
+myEventHook = mempty
 
 ------------------------------------------------------------------------
 -- Status bars and logging
 
 -- Perform an arbitrary action on each internal state change or X event.
--- See the 'DynamicLog' extension for examples.
+-- See the 'XMonad.Hooks.DynamicLog' extension for examples.
 --
 -- To emulate dwm's status bar
 --
@@ -340,6 +356,7 @@ main = do
       -- hooks, layouts
         layoutHook         = myLayout,
         manageHook         = myManageHook,
+        handleEventHook    = myEventHook,
         logHook            = myLogHook xmproc,
         startupHook        = myStartupHook
     }
