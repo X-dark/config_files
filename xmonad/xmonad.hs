@@ -1,33 +1,40 @@
 import XMonad
-import System.Exit
+
 import Data.List
-import XMonad.Hooks.DynamicLog
-import XMonad.Hooks.ManageDocks
-import XMonad.Util.Run(spawnPipe)
-import XMonad.Util.EZConfig(additionalKeys)
+
+import System.Exit
 import System.IO
-import XMonad.Layout
-import XMonad.Layout.Grid
-import XMonad.Layout.SimpleFloat
-import XMonad.Hooks.ManageHelpers
-import XMonad.Layout.PerWorkspace
-import XMonad.Layout.Spacing
-import XMonad.Actions.GridSelect
+
 import XMonad.Actions.CycleWS
+import XMonad.Actions.GridSelect
+
+import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
+import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.SetWMName
 
-import qualified XMonad.StackSet as W
-import qualified Data.Map        as M
+import XMonad.Layout
+import XMonad.Layout.Grid
+import XMonad.Layout.NoBorders
+import XMonad.Layout.PerWorkspace
+import XMonad.Layout.SimpleFloat
+import XMonad.Layout.Spacing
 
 import XMonad.Prompt
 import XMonad.Prompt.Man
 import XMonad.Prompt.Shell
 
+import XMonad.Util.EZConfig(additionalKeys)
+import XMonad.Util.Run(spawnPipe)
+
+import qualified Data.Map        as M
+import qualified XMonad.StackSet as W
+
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal      = "urxvt -e bash"
+myTerminal      = "urxvtc -e bash"
 
 -- Width of the window border in pixels.
 --
@@ -182,16 +189,16 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 ------------------------------------------------------------------------
 -- Mouse bindings: default actions bound to mouse events
 --
-myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
+myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList
 
     -- mod-button1, Set the window to floating mode and move by dragging
-    [ ((modMask, button1), (\w -> focus w >> mouseMoveWindow w))
+    [ ((modMask, button1), \w -> focus w >> mouseMoveWindow w)
 
     -- mod-button2, Raise the window to the top of the stack
-    , ((modMask, button2), (\w -> focus w >> windows W.swapMaster))
+    , ((modMask, button2), \w -> focus w >> windows W.swapMaster)
 
     -- mod-button3, Set the window to floating mode and resize by dragging
-    , ((modMask, button3), (\w -> focus w >> mouseResizeWindow w))
+    , ((modMask, button3), \w -> focus w >> mouseResizeWindow w)
 
     -- you may also bind events to the mouse scroll wheel (button4 and button5)
     ]
@@ -208,7 +215,7 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
 -- which denotes layout choice.
 --
 myLayout = spacing 3 $ avoidStruts $
-       tiled ||| Mirror tiled ||| Full ||| Grid ||| simpleFloat
+       tiled ||| Mirror tiled ||| smartBorders Full ||| Grid ||| simpleFloat
           where
      -- default tiling algorithm partitions the screen into two panes
              tiled   = Tall nmaster delta ratio
