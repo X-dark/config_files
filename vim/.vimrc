@@ -203,9 +203,7 @@ let g:calendar_monday = 1
 " Syntastic
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=1
-let g:syntastic_mode_map = { 'mode': 'active',
-            \ 'active_filetypes': ['ruby', 'php', 'perl'],
-            \ 'passive_filetypes': ['puppet'] }
+let g:syntastic_perl_checkers=['perl', 'perlcritic']
 
 " Source the vimrc file after saving it
 if has("autocmd")
