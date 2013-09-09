@@ -100,7 +100,7 @@ endif
 if &t_Co > 2 || has("gui_running")
   syntax on
   let g:hybrid_use_Xresources = 1
-  colorscheme hybrid
+  colorscheme kolor
   set hlsearch
 endif
 
