@@ -150,7 +150,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_q     ), spawn "/home/cgirard/shutdown.sh")
 
     -- Restart xmonad
-    , ((modm              , xK_q     ), spawn "xmonad --recompile; xmonad --restart")
+    , ((modm              , xK_q     ), spawn "killall conky dzen2 && xmonad --recompile; xmonad --restart")
 
     -- GridSelected
     , ((modm,               xK_g     ), goToSelected defaultGSConfig)
@@ -301,13 +301,14 @@ myEventHook = mempty
 --
 -- > logHook = dynamicLogDzen
 --
-myLogHook pipe = dynamicLogWithPP  xmobarPP
+myLogHook pipe = dynamicLogWithPP dzenPP
                         { ppOutput = hPutStrLn pipe
-                        , ppCurrent = xmobarColor "#AE6F38" "" . wrap "[" "]"
-                        , ppTitle = xmobarColor "#6B8836" "" . shorten 60
+                        , ppCurrent = dzenColor "#AE6F38" "" . wrap "[" "]"
+                        , ppTitle = dzenColor "#6B8836" "" . shorten 90
                         }
                 >> ewmhDesktopsLogHook
-                >> setWMName "LG3D"
+
+dzenConky = "conky -c ~/.xmonad/conkyrc | /usr/bin/dzen2 -x 650 -w 629 -fn '-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*' -ta r"
 
 ------------------------------------------------------------------------
 -- Prompts
@@ -338,7 +339,8 @@ myStartupHook = return ()
 -- Run xmonad with the settings you specify. No need to modify this.
 --
 main = do
-    xmproc <- spawnPipe "/usr/bin/xmobar /home/cgirard/.xmobarrc"
+    dzproc <- spawnPipe "/usr/bin/dzen2 -w 650 -fn '-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*' -ta l"
+    spawn dzenConky
     xmonad $ defaultConfig {
       -- simple stuff
         terminal           = myTerminal,
@@ -357,6 +359,6 @@ main = do
         layoutHook         = myLayout,
         manageHook         = myManageHook,
         handleEventHook    = myEventHook,
-        logHook            = myLogHook xmproc,
+        logHook            = myLogHook dzproc,
         startupHook        = myStartupHook
     }
