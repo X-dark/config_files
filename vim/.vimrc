@@ -65,6 +65,7 @@ endif
 "powerline
 let g:Powerline_cache_file = "/home/cgirard/.vim/Powerline.cache"
 "let g:Powerline_symbols = 'fancy'
+set encoding=utf-8
 
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
