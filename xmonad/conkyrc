@@ -1,0 +1,16 @@
+out_to_console yes
+out_to_x no
+background yes
+update_interval 1
+total_run_times 0
+use_spacer none
+
+lua_load ~/.config/conky/scripts/lua_scripts.lua
+
+TEXT
+\
+^fg(\#888888)^i(/usr/share/icons/stlarch_icons/cpu13.xbm)^fg(\#ffffff)${lua_parse format %3.0f ${cpu cpu1}}%${lua_parse format %3.0f ${cpu cpu2}}%${lua_parse format %3.0f ${cpu cpu3}}%${lua_parse format %3.0f ${cpu cpu4}}%\
+^fg(\#888888) ^i(/usr/share/icons/stlarch_icons/mem1.xbm) ^fg(\#ffffff)$mem/$memmax\
+^fg(\#888888) ^i(/usr/share/icons/stlarch_icons/downright1.xbm)^fg(\#ffffff)${lua_parse format %5.1f ${downspeedf eth0}}KB ^fg(\#888888)^i(/usr/share/icons/stlarch_icons/upleft1.xbm)^fg(\#ffffff)${lua_parse format %5.1f ${upspeedf eth0}}KB\
+^fg(\#888888) ^i(/usr/share/icons/stlarch_icons/batt4full.xbm)^fg(\#ffffff) $battery_short $battery_time\
+^fg(\#888888) ^i(/usr/share/icons/stlarch_icons/clock2.xbm) ^fg(\#ffffff)${time}
