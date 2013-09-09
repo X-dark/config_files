@@ -225,7 +225,7 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
 -- which denotes layout choice.
 --
 myLayout = spacing 3 $ avoidStruts $
-       tiled ||| Mirror tiled ||| smartBorders Full ||| Grid ||| simpleFloat
+       tiled ||| Mirror tiled ||| Full ||| Grid ||| simpleFloat
           where
      -- default tiling algorithm partitions the screen into two panes
              tiled   = Tall nmaster delta ratio
@@ -270,6 +270,8 @@ myManageHook = composeAll
     , className  =? "Xmessage"        --> doFloat
     , className  =? "Gxmessage"        --> doFloat
     , className  =? "DialogBox"        --> doFloat
+    , className  =? "Steam"        --> doFloat
+    , className =? "Plugin-container"  --> doFullFloat
     , resource  =? "Download"       --> doFloat
     , resource  =? "Browser"        --> doFloat
     , resource =? "Toplevel"       --> doFullFloat
@@ -277,8 +279,6 @@ myManageHook = composeAll
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore ]
     <+> manageDocks
-    <+> composeOne
-    [ isFullscreen -?> doFullFloat ]
 
 ------------------------------------------------------------------------
 -- Event handling
@@ -289,7 +289,7 @@ myManageHook = composeAll
 -- return (All True) if the default handler is to be run afterwards. To
 -- combine event hooks use mappend or mconcat from Data.Monoid.
 --
-myEventHook = mempty
+myEventHook = mempty <+> fullscreenEventHook
 
 ------------------------------------------------------------------------
 -- Status bars and logging
@@ -356,7 +356,7 @@ main = do
         mouseBindings      = myMouseBindings,
 
       -- hooks, layouts
-        layoutHook         = myLayout,
+        layoutHook         = smartBorders (myLayout),
         manageHook         = myManageHook,
         handleEventHook    = myEventHook,
         logHook            = myLogHook dzproc,
