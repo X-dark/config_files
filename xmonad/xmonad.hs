@@ -190,7 +190,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- screenshots
     --
-    [((controlMask, xK_Print), spawn "sleep 0.2; scrot -s"),
+    [((controlMask, xK_Print), spawn "sleep 0.2; scrot -s -d 1"),
      ((0, xK_Print), spawn "scrot")]
 
 
