@@ -65,4 +65,4 @@ perl_local_perl5lib(){
 }
 
 #tmuxinator
-[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
+source /usr/lib/ruby/gems/*/gems/tmuxinator-*/completion/tmuxinator.bash
