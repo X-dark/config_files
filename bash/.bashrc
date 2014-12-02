@@ -16,10 +16,12 @@ export EDITOR=vim
 export PAGER=less
 
 export ARCH_HASKELL='Cedric Girard <girard.cedric@gmail.com>'
+export XDG_CONFIG_HOME="/home/cgirard/.config"
 
 archmirrorupdate(){
     cp /etc/pacman.d/mirrorlist /tmp/mirrorlist_`date +%s`
     wget -q  'https://www.archlinux.org/mirrorlist/?country=FR&protocol=http&protocol=https&ip_version=4&use_mirror_status=on' -O - | sed 's!^#!!' > /tmp/mirrorlist.new
+    echo 'Server=http://seblu.net/a/arm/all' >> /tmp/mirrorlist.new
     sudo cp /tmp/mirrorlist.new /etc/pacman.d/mirrorlist
     sudo pacman -Syy
 }
@@ -41,6 +43,7 @@ deploy_terminfo(){
     fi
 }
 
+eval $(dircolors ~/.dircolors)
 if [[ $TERM == xterm-termite ]]; then
     . /etc/profile.d/vte.sh
     #PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }'__vte_osc7'
