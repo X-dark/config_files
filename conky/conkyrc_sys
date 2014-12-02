@@ -1,38 +1,39 @@
 background no
 use_xft yes
 xftfont erus:size=08
-update_interval 3.0
+update_interval 5
+update_interval_on_battery 10
 total_run_times 0
 own_window yes
 own_window_type desktop
 own_window_transparent yes
 own_window_hints undecorated,sticky,skip_taskbar,skip_pager
 double_buffer yes
-minimum_size  550
-maximum_width 550
+minimum_size  560
+maximum_width 560
 draw_shades no
 draw_outline no
 draw_borders no
 draw_graph_borders yes
 alignment top_left
-gap_x 200
-gap_y 415
+gap_x 780
+gap_y 650
 no_buffers yes
 uppercase no
 cpu_avg_samples 2
 override_utf8_locale no
 
 TEXT
-${goto 10}${color ce2c51}RAM         ${goto 110}BATTERY         ${goto 220}WIRELESS \
-${goto 360}ETHERNET\
+${goto 10}${color ce2c51}RAM         ${goto 110}SWAP            ${goto 210}BATTERY         ${goto 320}WIRELESS \
+${goto 460}ETHERNET\
 
-${goto 10}${color ffffff}used: ${mem}${goto 110}${battery}      ${goto 220}wlan0: ${addr wlan0} \
-${goto 360}eth0: ${addr eth0}\
+${goto 10}${color ffffff}used: ${mem}${goto 110}used: ${swap}   ${goto 210}${battery}      ${goto 320}wlan0: ${addr wlan0} \
+${goto 460}eth0: ${addr eth0}\
 
-${goto 10}free:  ${memeasyfree}          ${goto 110}${battery_bar 8,80} ${goto 220}essid: ${wireless_essid wlan0} \
-${goto 360}${downspeedf eth0}/${upspeedf eth0} KiB/s
-                                     ${goto 110}${battery_time}${goto 220}signal: ${wireless_link_bar 8,70 wlan0} \
+${goto 10}free:  ${memeasyfree}      ${goto 110}free:  ${swapfree}${goto 210}${battery_bar 8,80} ${goto 320}essid: ${wireless_essid wlan0} \
+${goto 460}${downspeedf eth0}/${upspeedf eth0} KiB/s
+${goto 10}${membar 8,70}             ${goto 110}${swapbar 8,70}   ${goto 210}${battery_time}${goto 320}signal: ${wireless_link_bar 8,70 wlan0} \
 
-${goto 220}${downspeedf wlan0}/${upspeedf wlan0} KiB/s
+${goto 320}${downspeedf wlan0}/${upspeedf wlan0} KiB/s
 
 # vim:set ft=conkyrc:
