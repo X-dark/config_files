@@ -35,6 +35,7 @@ import qualified XMonad.StackSet as W
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
+--myTerminal      = "urxvtc -e bash"
 myTerminal      = "termite -e bash"
 
 -- Whether focus follows the mouse pointer.
@@ -61,7 +62,17 @@ myModMask       = mod4Mask
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
-myWorkspaces    = ["web","mail","3","4","5","6","irc","8","9"]
+myWorkspaces    = clickable $ ["web","2","3","4","5","6","irc","8","9"]
+    where clickable l = [ "^ca(1,setxkbmap fr;xdotool key super+ampersand)web^ca()",
+                          "^ca(1,setxkbmap fr;xdotool key super+eacute)2^ca()",
+                          "^ca(1,setxkbmap fr;xdotool key super+quotedbl)3^ca()",
+                          "^ca(1,setxkbmap fr;xdotool key super+apostrophe)4^ca()",
+                          "^ca(1,setxkbmap fr;xdotool key super+parenleft)5^ca()",
+                          "^ca(1,setxkbmap fr;xdotool key super+minus)6^ca()",
+                          "^ca(1,setxkbmap fr;xdotool key super+egrave)irc^ca()",
+                          "^ca(1,setxkbmap fr;xdotool key super+underscore)8^ca()",
+                          "^ca(1,setxkbmap fr;xdotool key super+ccedilla)9^ca()"
+                        ]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -78,7 +89,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
 
     -- launch dmenu
-    , ((modm,               xK_p     ), spawn "exe=`yeganesh -x` && eval \"exec $exe\"")
+    --, ((modm,               xK_p     ), spawn "exe=`yeganesh -x` && eval \"exec $exe\"")
+    , ((modm,               xK_p     ), spawn "exe=`dmenu_run -hist ~/.config/dmenu2/hist -dim 0.4` && eval \"exec $exe\"")
 
     -- launch gmrun
     , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
@@ -185,7 +197,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- lock screen
     --
-    [ ((modm .|. shiftMask, xK_w), spawn "slimlock")]
+    [ ((modm .|. shiftMask, xK_w), spawn "sxlock -l")]
     ++
 
     -- screenshots
@@ -260,11 +272,12 @@ myManageHook = composeAll
     , className =? "Xchat"       --> doF (W.shift "irc")
     , title =? "weechat 0.3.6"  --> doF (W.shift "irc")
     --, fmap ("Oracle" `isPrefixOf`) title   --> doF (W.shift "irc")
-    , className =? "Thunderbird"       --> doF (W.shift "mail")
-    , className =? "Lanikai"       --> doF (W.shift "mail")
-    , className =? "Shredder"       --> doF (W.shift "mail")
-    , className =? "Miramar"       --> doF (W.shift "mail")
-    , className =? "Daily"      --> doF (W.shift "mail")
+    , className =? "Navigator"       --> doF (W.shift "web")
+    --, className =? "Thunderbird"       --> doF (W.shift "mail")
+    --, className =? "Lanikai"       --> doF (W.shift "mail")
+    --, className =? "Shredder"       --> doF (W.shift "mail")
+    --, className =? "Miramar"       --> doF (W.shift "mail")
+    --, className =? "Daily"      --> doF (W.shift "mail")
     , className =? "Gcalctool"        --> doFloat
     , className  =? "VirtualBox"        --> doFloat
     , className  =? "Xmessage"        --> doFloat
@@ -276,9 +289,14 @@ myManageHook = composeAll
     , resource  =? "Browser"        --> doFloat
     , resource =? "Toplevel"       --> doFullFloat
     , resource  =? "Dialog"        --> doFloat
+    , title =? "KeePassHttp: Confirm Access"        --> doFloat
+    , title =? "Search and Select List of Values - Nightly"        --> doFloat
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore ]
+--    , isFullscreen --> doFullFloat ]
     <+> manageDocks
+    -- <+> composeOne
+    --[ isFullscreen -?> (doF W.focusDown <+> doFullFloat)]
 
 ------------------------------------------------------------------------
 -- Event handling
@@ -289,7 +307,9 @@ myManageHook = composeAll
 -- return (All True) if the default handler is to be run afterwards. To
 -- combine event hooks use mappend or mconcat from Data.Monoid.
 --
-myEventHook = mempty <+> fullscreenEventHook
+-- myEventHook = mempty <+> fullscreenEventHook
+myEventHook = ewmhDesktopsEventHook <+> fullscreenEventHook
+-- myEventHook = ewmhDesktopsEventHook
 
 ------------------------------------------------------------------------
 -- Status bars and logging
@@ -301,6 +321,13 @@ myEventHook = mempty <+> fullscreenEventHook
 --
 -- > logHook = dynamicLogDzen
 --
+-- myLogHook pipe = dynamicLogWithPP  xmobarPP
+--                         { ppOutput = hPutStrLn pipe
+--                         , ppCurrent = xmobarColor "#AE6F38" "" . wrap "[" "]"
+--                         , ppTitle = xmobarColor "#6B8836" "" . shorten 60
+--                         }
+--                 >> ewmhDesktopsLogHook
+--                 >> setWMName "LG3D"
 myLogHook pipe = dynamicLogWithPP dzenPP
                         { ppOutput = hPutStrLn pipe
                         , ppCurrent = dzenColor "#AE6F38" "" . wrap "[" "]"
@@ -308,7 +335,7 @@ myLogHook pipe = dynamicLogWithPP dzenPP
                         }
                 >> ewmhDesktopsLogHook
 
-dzenConky = "conky -c ~/.xmonad/conkyrc | /usr/bin/dzen2 -x 650 -w 629 -fn '-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*' -ta r"
+dzenConky = "conky -c ~/.xmonad/conkyrc | /usr/bin/dzen2 -x 800 -w 800 -fn '-misc-fixed-*-*-*-*-12-*-*-*-*-*-*-*' -ta r"
 
 ------------------------------------------------------------------------
 -- Prompts
@@ -339,9 +366,10 @@ myStartupHook = return ()
 -- Run xmonad with the settings you specify. No need to modify this.
 --
 main = do
-    dzproc <- spawnPipe "/usr/bin/dzen2 -w 650 -fn '-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*' -ta l"
+    --xmproc <- spawnPipe "/usr/bin/xmobar /home/cgirard/.xmobarrc"
+    dzproc <- spawnPipe "/usr/bin/dzen2 -w 800 -fn '-misc-fixed-*-*-*-*-12-*-*-*-*-*-*-*' -ta l"
     spawn dzenConky
-    xmonad $ defaultConfig {
+    xmonad $ docks $ defaultConfig {
       -- simple stuff
         terminal           = myTerminal,
         focusFollowsMouse  = myFocusFollowsMouse,
