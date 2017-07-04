@@ -7,7 +7,7 @@ allow_bold = true
 dynamic_title = true
 urgent_on_bell = true
 clickable_url = true
-font = envypn 9
+#font = envypn 9
 scrollback_lines = 10000
 search_wrap = true
 #icon_name = terminal
@@ -19,23 +19,27 @@ cursor_blink = system
 # "block", "underline" or "ibeam"
 cursor_shape = block
 
-# $BROWSER is used by default
+# $BROWSER is used by default if set, with xdg-open as a fallback
 browser = firefox
 
 # set size hints for the window
 #size_hints = false
 
-# emit escape sequences for other keys modified by Control
+# Hide links that are no longer valid in url select overlay mode
+filter_unmatched_urls = true
+
+# emit escape sequences for extra modified keys
 #modify_other_keys = false
 
 [colors]
 cursor = #999999
+cursor_foreground = #cccccc
 foreground = #cccccc
 foreground_bold = #ffffff
 background = #333333
 
 # 20% background transparency (requires a compositor)
-background = rgba(51, 51, 51, 0.8)
+background = rgba(51, 51, 51, 0.90)
 
 # if unset, will reverse foreground and background
 #highlight = #2f2f2f
@@ -63,7 +67,7 @@ color15 = #FFFFFF
 #foreground = #dcdccc
 #background = #3f3f3f
 #active_foreground = #e68080
-#active_background = #3f3f3f
+active_background = #3f3f3f
 #padding = 2
 #border = #3f3f3f
 #border_width = 0.5
