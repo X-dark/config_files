@@ -30,6 +30,11 @@ if v:progname =~? "evim"
   finish
 endif
 
+if has('nvim')
+    set runtimepath+=/usr/share/vim/vimfiles
+    let g:powerline_loaded = 1
+endif
+
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
@@ -63,6 +68,7 @@ if has('statusline')
 endif
 
 "powerline
+let g:powerline_pycmd = "py3"
 let g:Powerline_cache_file = "/home/cgirard/.vim/Powerline.cache"
 "let g:Powerline_symbols = 'fancy'
 set encoding=utf-8
@@ -72,10 +78,11 @@ set incsearch		" do incremental searching
 set nu
 "set tw=80
 "set wrap
+set colorcolumn=80
 set tabstop=8
 set expandtab
 set smarttab
-set shiftwidth=4
+set shiftwidth=2
 set shiftround
 "set autoindent
 
@@ -100,7 +107,9 @@ endif
 if &t_Co > 2 || has("gui_running")
   syntax on
   let g:hybrid_use_Xresources = 1
+  "set t_Co=256
   colorscheme kolor
+  hi Normal ctermbg=none
   set hlsearch
 endif
 
@@ -155,22 +164,36 @@ set spelllang=fr
 nnoremap <silent> <F12> :BufExplorer<CR>
 nnoremap <silent> <S-F12> :bn<CR>
 
-"TagList
-nnoremap <silent> <F11> :TlistToggle<CR>
-
-"Trinity
-" Open and close all the three plugins on the same time
-nmap <F5>   :TrinityToggleAll<CR>
-
-" Open and close the srcexpl.vim separately
-nmap <F6>   :TrinityToggleSourceExplorer<CR>
-
 " Open and close the taglist.vim separately
-nmap <F7>  :TrinityToggleTagList<CR>
+nmap <F7>  :TlistToggle<CR>
+" Split to the right side of the screen
+let g:Tlist_Use_Left_Window = 1
+" Set the window width
+let g:Tlist_WinWidth = 40
+" Sort by the order
+let g:Tlist_Sort_Type = "order"
+" Do not display the help info
+let g:Tlist_Compact_Format = 1
+" If you are the last, kill yourself
+let g:Tlist_Exit_OnlyWindow = 1
+" Do not close tags for other files
+let g:Tlist_File_Fold_Auto_Close = 1
+" Do not show folding tree
+let g:Tlist_Enable_Fold_Column = 0
+" Always display one file tags
+let g:Tlist_Show_One_File = 1
 
 " Open and close the NERD_tree.vim separately
-nmap <F8>  :TrinityToggleNERDTree<CR>
+nmap <F8>  :NERDTreeToggle<CR>
 let g:NERDTreeChDirMode=0
+" Set the window width
+let g:NERDTreeWinSize = 23
+" Set the window position
+let g:NERDTreeWinPos = "right"
+" Auto centre
+let g:NERDTreeAutoCenter = 0
+" Not Highlight the cursor line
+let g:NERDTreeHighlightCursorline = 0
 
 " LaTeX Suite
 set grepprg=grep\ -nH\ $*
@@ -183,14 +206,14 @@ au FileType xml setlocal foldmethod=syntax
 " Perl Folding
 let perl_fold=1
 
+" sh folding
+let g:sh_fold_enabled= 3
+
 " highlight whitespaces
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 
 nmap <silent> <C-n> :exec &nu==&rnu? "se nu!" : "se rnu!"<CR>
-
-"let $XIKI_DIR = "/home/cgirard/.gem/ruby/1.9.1/gems/xiki-0.6.3"
-"source /home/cgirard/.gem/ruby/1.9.1/gems/xiki-0.6.3/etc/vim/xiki.vim
 
 " Turn on the WiLd menu
 set wildmenu
@@ -203,9 +226,21 @@ let g:calendar_monday = 1
 " Syntastic
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=1
+"let g:syntastic_mode_map = { 'mode': 'active',
+"            \ 'active_filetypes': ['ruby', 'php', 'perl'],
+"            \ 'passive_filetypes': ['puppet'] }
 let g:syntastic_perl_checkers=['perl', 'perlcritic']
+let g:syntastic_enable_perl_checker=1
 
 " Source the vimrc file after saving it
 if has("autocmd")
     autocmd bufwritepost .vimrc source $MYVIMRC
 endif
+
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_guide_size = 1
+let g:indent_guides_start_level = 2
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=237
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=240
+
