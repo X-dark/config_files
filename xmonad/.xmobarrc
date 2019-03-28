@@ -3,13 +3,13 @@ Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
        , fgColor = "#696969"
        , position = TopW L 90
        , lowerOnStart = False
-       , commands = [ Run MultiCpu ["-t","C: <total>%","-L","30","-H","70","-n","#AE6F38","-l","#6B8836","-h","#C16F61"] 10
-                    , Run Memory ["-t","M: <usedratio>%","-L","30","-H","70","-n","#AE6F38","-l","#6B8836","-h","#C16F61"] 10
-                    , Run Swap ["-t","S: <usedratio>%","-L","10","-H","30","-n","#AE6F38","-l","#6B8836","-h","#C16F61"] 10
-                    , Run Battery ["-t","B: <timeleft>"] 60
-                    , Run Date "%a %b %_d %k:%M" "date" 10
+       , commands = [ Run MultiCpu ["-t","C: <total>%","-L","30","-H","70","-n","#AE6F38","-l","#6B8836","-h","#C16F61"] 100
+                    , Run Memory ["-t","M: <usedratio>%","-L","30","-H","70","-n","#AE6F38","-l","#6B8836","-h","#C16F61"] 100
+                    , Run Swap ["-t","S: <usedratio>%","-L","10","-H","30","-n","#AE6F38","-l","#6B8836","-h","#C16F61"] 100
+                    , Run Battery ["-t","B: <timeleft>"] 600
+                    , Run Date "%a %b %_d %k:%M" "date" 100
                     , Run StdinReader
-                    , Run MPD ["-t", "<artist>: <title> (<album>) <statei>", "--", "-P", "|>", "-Z", "||", "-S", ""] 10
+                    , Run MPD ["-t", "<artist>: <title> (<album>) <statei>", "--", "-P", "|>", "-Z", "||", "-S", ""] 100
                     , Run CommandReader "ledmon" "LED"
                     ]
        , sepChar = "%"

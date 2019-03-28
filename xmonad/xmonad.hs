@@ -197,7 +197,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- lock screen
     --
-    [ ((modm .|. shiftMask, xK_w), spawn "sxlock -l")]
+    --[ ((modm .|. shiftMask, xK_w), spawn "sxlock -l")]
+    [ ((modm .|. shiftMask, xK_w), spawn "light-locker-command -l")]
     ++
 
     -- screenshots
@@ -286,11 +287,11 @@ myManageHook = composeAll
     , className  =? "Steam"        --> doFloat
     , className =? "Plugin-container"  --> doFullFloat
     , resource  =? "Download"       --> doFloat
-    , resource  =? "Browser"        --> doFloat
+    --, resource  =? "Browser"        --> doFloat
     , resource =? "Toplevel"       --> doFullFloat
     , resource  =? "Dialog"        --> doFloat
     , title =? "KeePassHttp: Confirm Access"        --> doFloat
-    , title =? "Search and Select List of Values - Nightly"        --> doFloat
+    --, title =? "Search and Select List of Values - Nightly"        --> doFloat
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore ]
 --    , isFullscreen --> doFullFloat ]
