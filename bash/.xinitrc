@@ -14,7 +14,7 @@ VBoxClient-all&
 compton -b
 nitrogen --restore
 #trayer --edge top --align right --SetDockType true --SetPartialStrut true  --expand true --width 10 --transparent true --tint 0x191970 --height 10 &
-trayer --edge top --align left --SetDockType true --SetPartialStrut true  --expand true --width 100 --widthtype pixel --tint 0xd6d6d6 --height 8 --margin 1820 --transparent true &
+trayer --edge top --align left --SetDockType true --SetPartialStrut true  --expand true --width 200 --widthtype pixel --tint 0xd6d6d6 --height 15 --margin 1720 --transparent true --iconspacing 2 &
 conky -c ~/.config/conky/conkyrc_sys -d & conky -c ~/.config/conky/conkyrc_date -d & conky -c ~/.config/conky/conkyrc_time -d
 #dispwin -d1 -I ~/.local/share/color/icc/devices/display/Screen\ 1\ 2011-04-17\ max\ native\ min\ native\ 2.2\ MQ-HQ\ 1xCurve+MTX.icc
 #redshift-gtk&

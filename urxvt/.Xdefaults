@@ -5,66 +5,94 @@ URxvt.foreground: white
 
 URxvt*iso14755: False
 
-#URxvt.depth: 32
-#URxvt.background: rgba:0000/0000/0000/cccc
+URxvt.depth: 32
+URxvt*background: rgba:0000/0000/0000/cccc
 URxvt.loginShell: true
 #URxvt.fading: 10
 #URxvt.fadeColor: [0]black
 URxvt.perl-lib: /usr/lib/urxvt/perl
 URxvt.keysym.M-u: perl:mark-yank-urls:activate_mark_mode
 URxvt.underlineURLs: true
-URxvt.perl-ext: selection,mark-yank-urls,clipboard
-URxvt.urlLauncher: /usr/bin/firefox
+URxvt.perl-ext: selection
+URxvt.perl-ext-common:  default,matcher
+URxvt.matcher.button:   1
+URxvt.urlLauncher: /usr/bin/firefox-ux
 URxvt.underlineColor: green
 URxvt.saveLines: 65535
 URxvt.scrollBar: false
+URxvt.visualBell: true
 
-URxvt.background:  #e3dfdf
-URxvt.foreground:  #696969
+#urxvt*background:       #1D1D1D
+#urxvt*foreground:       #C4C0AB
 
-! ANSI
-! Normal
-! ! color0     black
-! ! color1     red
-! ! color2     green
-! ! color3     yellow
-! ! color4     blue
-! ! color5     purple
-! ! color6     cyan
-! ! color7     white
-URxvt.color0:      #373a37
-URxvt.color1:      #c16f61
-URxvt.color2:      #6B8836
-URxvt.color3:      #AE6F38
-URxvt.color4:      #6287A0
-URxvt.color5:      #6D8D83
-URxvt.color6:      #3783B1
-URxvt.color7:      #D6D6D6
+#!black
+#urxvt*color8:           #444444
+#urxvt*color0:           #3A3A3A
+#!red
+#urxvt*color1:           #D97672
+#urxvt*color9:           #DD4D47
+#!green
+#urxvt*color2:           #C9D99F
+#urxvt*color10:          #AEC670
+#!yellow
+#urxvt*color3:           #D5D680
+#urxvt*color11:          #BEC04A
+#!blue
+#urxvt*color4:           #A9AAD1
+#urxvt*color12:          #7F80AD
+#!magenta
+#urxvt*color5:           #D3C6D7
+#urxvt*color13:          #AF9AC5
+#!cyan
+#urxvt*color6:           #B2CAC8
+#urxvt*color14:          #7BADA1
+#!white
+#urxvt*color7:           #FFFFFF
+#urxvt*color15:          #C0C0C0
 
-! Light
-! ! color8     black
-! ! color9     red
-! ! color10    green
-! ! color11    yellow
-! ! color12    blue
-! ! color13    purple
-! ! color14    cyan
-! ! color15    white
-URxvt.color8:      #373a37
-URxvt.color9:      #c16F61
-URxvt.color10:     #6B8836
-URxvt.color11:     #AE6F38
-URxvt.color12:     #6287A0
-URxvt.color13:     #6D8D83
-URxvt.color14:     #3783B1
-URxvt.color15:     #D6D6D6
+URxvt*background:        #333333
+URxvt*foreground:        #cccccc
+URxvt*cursorColor:       #999999
+URxvt*colorBD:           #ffffff
+URxvt*colorUL:           #ffff99
+
+!BLK
+URxvt*color0:           #666666
+URxvt*color8:           #999999
+!RED
+URxvt*color1:          #CC6699
+URxvt*color9:           #FF99CC
+!GRN
+URxvt*color2:           #99CC66
+URxvt*color10:         #CCFF99
+!YEL
+URxvt*color3:          #CC9966
+URxvt*color11:         #FFCC99
+!BLU
+URxvt*color4:          #6699CC
+URxvt*color12:         #99CCFF
+!MAG
+URxvt*color5:           #9966CC
+URxvt*color13:          #CC99FF
+!CYN
+URxvt*color6:          #66CC99
+URxvt*color14:         #99FFCC
+!WHT
+URxvt*color7:          #CCCCCC
+URxvt*color15:         #FFFFFF
+
 
 #URxvt.font:     -*-fixed-medium-r-*-*-13-*-*-*-*-*-*-*
 
 #URxvt.font:   xft:5x13
-URxvt.font: 7x13bold,\
-            -misc-fixed-bold-r-normal--15-140-75-75-c-90-iso10646-1,\
-            -misc-fixed-medium-r-normal--15-140-75-75-c-90-iso10646-1, \
-            [codeset=JISX0208]xft:Kochi Gothic:antialias=false, \
-            xft:Code2000:antialias=false
+#URxvt.font: 7x13bold,\
+            #-misc-fixed-bold-r-normal--15-140-75-75-c-90-iso10646-1,\
+            #-misc-fixed-medium-r-normal--15-140-75-75-c-90-iso10646-1, \
+            #[codeset=JISX0208]xft:Kochi Gothic:antialias=false, \
+            #xft:Code2000:antialias=false
 
+#URxvt*font:               -artwiz-lime-medium-r-normal-*-10-110-75-75-m-50-iso8859-1
+#URxvt*boldFont:           -artwiz-lime-medium-r-normal-*-10-110-75-75-m-50-iso8859-1
+
+#URxvt*font:     -ypn-envypn-medium-r-normal--13-130-75-75-c-90-iso8859-1
+#URxvt*boldFont:     -ypn-envypn-medium-r-normal--13-130-75-75-c-90-iso8859-1
