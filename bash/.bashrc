@@ -84,6 +84,9 @@ source /usr/lib/ruby/gems/*/gems/tmuxinator-*/completion/tmuxinator.bash
 #fzf
 source /usr/share/fzf/completion.bash
 
+#the-fuck
+eval $(thefuck --alias)
+
 export MOZ_USE_OMTC=1
 export SPICE_NOGRAB=1
 export GDK_BACKEND=wayland
