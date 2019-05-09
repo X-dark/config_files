@@ -32,7 +32,7 @@ wireless _first_ {
 }
 
 wifi {
-  format = " {bitrate} {icon} {ssid} {ip}|"
+  format = " {bitrate}{bitrate_unit} {icon} {ssid} {ip}|"
 }
 
 ethernet _first_ {
