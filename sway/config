@@ -254,6 +254,8 @@ gaps inner 4
 smart_borders on
 smart_gaps on
 
+
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec nextcloud
 exec dropbox
 exec mako
