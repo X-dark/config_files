@@ -62,12 +62,12 @@ battery_level {
         battery_id = "all"
 }
 
-tztime local {
-        format = "%Y-%m-%d %H:%M:%S"
-}
-
 load {
         format = "%1min %5min %15min"
+}
+
+tztime local {
+        format = "%Y-%m-%d %H:%M:%S"
 }
 
 volume master {
