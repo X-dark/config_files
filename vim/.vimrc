@@ -108,6 +108,7 @@ if &t_Co > 2 || has("gui_running")
   syntax on
   let g:hybrid_use_Xresources = 1
   "set t_Co=256
+  set background=dark
   colorscheme hybrid
   hi Normal ctermbg=none
   set hlsearch
