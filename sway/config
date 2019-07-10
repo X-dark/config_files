@@ -21,6 +21,8 @@ set $term termite
 set $menu termite --name=launcher -e ~/.config/sway/sway-launcher
 for_window [app_id="^launcher$"] floating enable, border none
 
+for_window [title="^Nightly - Sharing Indicator$"] floating enable, border none
+
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
