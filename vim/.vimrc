@@ -84,6 +84,7 @@ set expandtab
 set smarttab
 set shiftwidth=2
 set shiftround
+set cursorcolumn
 "set autoindent
 
 
