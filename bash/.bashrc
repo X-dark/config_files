@@ -88,8 +88,8 @@ source /usr/share/fzf/completion.bash
 eval $(thefuck --alias)
 
 export MOZ_USE_OMTC=1
+export MOZ_ENABLE_WAYLAND=1
 export SPICE_NOGRAB=1
-export GDK_BACKEND=wayland
 export QT_QPA_PLATFORM=wayland-egl
 export CLUTTER_BACKEND=wayland
 export SDL_VIDEODRIVER=wayland
