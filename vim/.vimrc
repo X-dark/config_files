@@ -211,6 +211,9 @@ let perl_fold=1
 " sh folding
 let g:sh_fold_enabled= 3
 
+" arduino folding
+au FileType arduino setlocal foldmethod=syntax
+
 " highlight whitespaces
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
