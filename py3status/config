@@ -37,7 +37,7 @@ wifi {
 
 ethernet _first_ {
         # if you use %speed, i3status requires root privileges
-        format_up = " %ip (%speed)"
+        format_up = "%ip (%speed)"
         format_down = ""
 }
 
