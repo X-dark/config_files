@@ -250,10 +250,10 @@ bar {
     #tray_bindsym BTN_RIGHT ContextMenu
 }
 
-default_border pixel 1
+default_border pixel 4
 gaps inner 4
 smart_borders on
-smart_gaps on
+smart_gaps off
 
 
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
