@@ -247,6 +247,7 @@ bar {
 
     #status_command i3status
     status_command py3status -c ~/.config/i3status/config --wm sway
+    status_padding 0
     #tray_bindsym BTN_RIGHT ContextMenu
 }
 
