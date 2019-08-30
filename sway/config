@@ -238,12 +238,12 @@ bar {
     #status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
 
     colors {
-        statusline #ffffff
-        background #323232
+        statusline #f2f0ec
+        background #2d2d2d80
         inactive_workspace #32323200 #32323200 #5c5c5c
     }
 
-    font pango:envypn, Awesome 9
+    font pango:Deja Vu Sans Mono Bold, Awesome 10
 
     #status_command i3status
     status_command py3status -c ~/.config/i3status/config --wm sway
