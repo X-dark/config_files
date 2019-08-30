@@ -8,6 +8,11 @@
 
 general {
         colors = true
+        # These will be used if not supplied by a module
+        color = '#f2f0ec'
+        color_good = '#00e6ac'
+        color_bad = '#f2777a'
+        color_degraded = '#ffcc66'
         interval = 5
 }
 
@@ -22,8 +27,11 @@ order += "load"
 order += "volume master"
 order += "tztime local"
 
-window_title {
+window_title_async {
   format = "{title}"
+  min_length = 120
+  max_width = 120
+  position = "center"
 }
 
 wireless _first_ {
@@ -63,16 +71,16 @@ battery_level {
 }
 
 load {
-        format = "%1min %5min %15min"
+        format = " %1min %5min %15min"
 }
 
 tztime local {
-        format = "%Y-%m-%d %H:%M:%S"
+        format = "%a %d %b %H:%M:%S"
 }
 
 volume master {
   format = "♪: %volume"
-  format_muted = "♪: M"
+  format_muted = ""
 
 }
 
