@@ -17,6 +17,7 @@ general {
 }
 
 order += "window_title_async"
+order += "mpris"
 #order += "wireless _first_"
 order += "wifi"
 order += "ethernet _first_"
@@ -32,6 +33,18 @@ window_title_async {
   min_length = 120
   max_width = 120
   position = "center"
+}
+
+mpris {
+  #format = "[{nowplaying}] {previous} {toggle} {next}|[{artist} - ][{title}] {previous} {toggle} {next}"
+  format = "[{artist} - ][{title}] {previous} {toggle} {next}"
+  format_none = ""
+  icon_pause = ""
+  icon_play = ""
+  icon_stop = ""
+  icon_next = ""
+  icon_previous = ""
+
 }
 
 wireless _first_ {
