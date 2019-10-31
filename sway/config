@@ -257,7 +257,9 @@ smart_borders on
 smart_gaps off
 
 
+exec redshift-gtk
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec keepassxc
 exec nextcloud
 exec dropbox
 exec mako
