@@ -10,7 +10,7 @@ general {
         colors = true
         # These will be used if not supplied by a module
         color = '#f2f0ec'
-        color_good = '#00e6ac'
+        color_good = '#f2f0ec'
         color_bad = '#f2777a'
         color_degraded = '#ffcc66'
         interval = 5
