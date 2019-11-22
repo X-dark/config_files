@@ -257,8 +257,10 @@ smart_borders on
 smart_gaps off
 
 
-exec redshift-gtk
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec "systemctl --user import-environment; systemctl --user start sway-session.target"
+
+exec redshift-gtk
 exec keepassxc
 exec nextcloud
 exec dropbox

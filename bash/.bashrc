@@ -87,11 +87,3 @@ source /usr/share/fzf/completion.bash
 #the-fuck
 eval $(thefuck --alias)
 
-export MOZ_USE_OMTC=1
-export MOZ_ENABLE_WAYLAND=1
-export SPICE_NOGRAB=1
-export QT_QPA_PLATFORM=wayland-egl
-export CLUTTER_BACKEND=wayland
-export SDL_VIDEODRIVER=wayland
-export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-export _JAVA_AWT_WM_NONREPARENTING=1
