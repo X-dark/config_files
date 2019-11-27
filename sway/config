@@ -18,8 +18,9 @@ set $term termite
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
 #set $menu dmenu_path | dmenu | xargs swaymsg exec --
-set $menu termite --name=launcher -e ~/.config/sway/sway-launcher
+set $menu2 termite --name=launcher -e ~/.config/sway/sway-launcher
 for_window [app_id="^launcher$"] floating enable, border none
+set $menu exec termite --name=launcher -e 'env TERMINAL_COMMAND="termite -e" sway-launcher-desktop'
 
 for_window [title="^Nightly - Sharing Indicator$"] floating enable, border none
 
@@ -90,6 +91,7 @@ input * {
 
     # Start your launcher
     bindsym $mod+p exec $menu
+    bindsym $mod+Shift+p exec $menu2
     bindsym $mod+Shift+w exec "swaylock -f -c 000000"
 
     # Drag floating windows by holding down $mod and left mouse button.
