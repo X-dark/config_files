@@ -61,7 +61,7 @@ if [[ $TERM == xterm-termite ]]; then
     powerline-daemon -q
     export POWERLINE_BASH_CONTINUATION=1
     export POWERLINE_BASH_SELECT=1
-    source /usr/lib/python3.7/site-packages/powerline/bindings/bash/powerline.sh
+    source /usr/lib/python3.?/site-packages/powerline/bindings/bash/powerline.sh
 fi
 
 #Bash history
