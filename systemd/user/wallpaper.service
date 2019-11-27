@@ -1,0 +1,8 @@
+[Unit]
+Description=Change wallpaper from unsplash
+
+[Service]
+ExecStart=%h/wallpaper-unsplash.sh
+
+[Install]
+WantedBy=default.target
